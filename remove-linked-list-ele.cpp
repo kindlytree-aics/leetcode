@@ -49,31 +49,6 @@ typedef struct ListNode {
     return phead;
  }
 
-
-// ListNode* removeElements(ListNode* head, int val) {
-//     ListNode* cur_node = head, *pre_node = head;
-//     while(cur_node != NULL){
-//         if(cur_node->val == val){
-//             if(cur_node == head)
-//             {
-//                 head = cur_node->next;
-//                 delete cur_node;
-//                 pre_node = head;
-//                 cur_node = head;
-                
-//             }else{
-//                 pre_node->next = cur_node->next;
-//                 delete cur_node;
-//                 cur_node = pre_node->next;
-//             }
-//         }else{
-//             pre_node = cur_node;
-//             cur_node = cur_node->next;
-//         }
-//     }
-//     return head;
-// }
-
 void print(ListNode* list)
 {
     while(list){
@@ -89,7 +64,7 @@ ListNode* removeElements(ListNode* phead, int val)
     while(cur_node != NULL)
     {
         if(cur_node->val == val)
-        {
+        {   //如果是链表头，还需要更新phead的值
             if(cur_node == phead)
             {
                 cur_node = phead->next;

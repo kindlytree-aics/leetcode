@@ -19,43 +19,16 @@
 #include <iostream>
 using namespace std;
 
-// vector<vector<int>> generateMatrix(int n) {
-//     vector<vector<int>> spiral_matrix(n, vector<int>(n,0));
-//     int start_num = 1;
-//     int circle_num = int((n+1)/2);
-//     for(int i =0; i < circle_num; i++)
-//     {
-//         //top;
-//         for(int row=i, col = i; col < n-i; col++)
-//         {
-//             spiral_matrix[row][col] = start_num++;
-//         }
-//         //right
-//         for(int col=n-i-1, row=i+1; row < n-i; row++)
-//         {
-//             spiral_matrix[row][col] = start_num++;
-//         }
-//         //bottom
-//         for(int row=n-i-1, col=n-i-2; col >=i; col--)
-//         {
-//             spiral_matrix[row][col] = start_num++;
-//         }
-//         //left
-//         for(int row=n-i-2, col=i; row > i; row--)
-//         {
-//             spiral_matrix[row][col] = start_num++;
-//         }            
-//     }
-//     return spiral_matrix;
-// }
-
 vector<vector<int>> generateMatrix(int n)
 {
     int circle_num = int((n+1)/2);
     int start = 1;
     vector<vector<int>>spiral_matrix(n, vector<int>(n, 0));
+    //螺旋矩阵的绘制可以看作一圈一圈进行绘制
+    //圈的数目为(n+1)/2;
     for(int circle_idx =0; circle_idx < circle_num; circle_idx++)
     {
+        //圈顺时针进行绘制，上右下左顺序进行
         //top;right,bottom,left;
         for(int row=circle_idx, col=circle_idx; col < n-circle_idx; col++)
         {

@@ -26,6 +26,10 @@ https://leetcode.cn/problems/binary-search
 
 using namespace std;
 
+//二分搜索
+//折半查找
+//通过数组的有序特性一次判断减少一半的搜索的空间
+//迭代进行，时间复杂度为O(logn)
 int binary_search(vector<int>&nums, int target)
 {
     int nsize = nums.size();
@@ -52,7 +56,6 @@ int main()
 {
     vector<int> nums={-1,0,3,5,9,12};
     int target = 12;
-
     int index = binary_search(nums, target);
     cout << index <<endl;
 }

@@ -56,7 +56,6 @@ int remove_element(vector<int>&nums, int val)
             {
                 return index;
             }
-
         }
         nums[index] = nums[i];
         index++;

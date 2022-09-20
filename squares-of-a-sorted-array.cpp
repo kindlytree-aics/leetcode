@@ -39,12 +39,19 @@ vector<int> squares_of_a_sorted_array(vector<int>nums)
     int square_left = nums[left]*nums[left];
     int square_right = nums[right]*nums[right];
     while(index >=0)
-    {
+    {   
+        //目标数组从最后一个元素(最大的元素)开始放置
+        //当前最大的元素是在索引left,或right
+        //通过比较其值的大小，将大的放到index(index从数组最末一位开始逆序)位置
+        //并进行对应的left或right的移动
+        //如果左边的大，将当前值放到数组left向右移动
+        //反之，right向左移动
         if(square_left >= square_right)
         {
             sorted_squares_nums[index] = square_left;
             index--;
             left++;
+            //如果数组全为负值，则此时最后一个元素left会超过数组长度 
             if(left < nsize)
             {
                 square_left = nums[left]*nums[left];
@@ -53,7 +60,8 @@ vector<int> squares_of_a_sorted_array(vector<int>nums)
         }else{
             sorted_squares_nums[index] = square_right;
             index--;
-            right--; 
+            right--;
+            //如果数组全为正值，则此时最后一个元素right会出现负值 
             if (right >= 0)
             {
                 square_right = nums[right]*nums[right];
