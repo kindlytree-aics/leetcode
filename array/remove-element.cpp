@@ -45,6 +45,9 @@ using namespace std;
 int remove_element(vector<int>&nums, int val)
 {
     int nsize = nums.size();
+    //两个索引，index记录当前数组需要更新的值的下标
+    //i记录数组已经遍历的元素的下标，如果i下表下的元素值等于val
+    //会直接滑动i的值向右，否则将值赋给index下表的位置，index和val同时滑动
     int index = 0;
     int i = 0;
     while(i < nsize)
