@@ -3,6 +3,7 @@
 ### 主要内容
 - 数组相关算法题目，array子目录
 - 链表相关算法题目，linked-list子目录
+- To be continued...
 
 
 ### 更多内容

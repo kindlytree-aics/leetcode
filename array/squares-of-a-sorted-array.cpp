@@ -1,4 +1,8 @@
-/*给你一个按 非递减顺序 排序的整数数组 nums，返回每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
+/*
+题目来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/squares-of-a-sorted-array
+
+给你一个按 非递减顺序 排序的整数数组 nums，返回每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
 
 示例 1：
 
@@ -21,9 +25,6 @@ nums 已按 非递减顺序 排序
 进阶：
 
 请你设计时间复杂度为 O(n) 的算法解决本问题
-
-来源：力扣（LeetCode）
-链接：https://leetcode.cn/problems/squares-of-a-sorted-array
 */
 
 #include <iostream>
