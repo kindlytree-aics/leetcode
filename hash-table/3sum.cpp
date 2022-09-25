@@ -1,5 +1,5 @@
 /*
-来源：力扣（LeetCode）
+题目来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/3sum
 
 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请
@@ -119,7 +119,7 @@ vector<vector<int>> threeSumv1(vector<int>& nums) {
 //假设a+b+c=0，a为最小的，b为中间，c为最大的
 //如果第一个元素a都大于0，则不满足条件，后续的b和c就不需要再遍历了
 //第一个元素有从左边第一个元素开始尝试，b(left)和c(right)的指针分别指向第一个元素的右边一个和最后一个
-//如果a+b+c>0,则right向左移动，小于0时向右移动
+//如果a+b+c>0,则right向左移动，小于0时left向右移动
 //等于0时，left向右移动（如果left移动时b值不变化，则持续移动），对应的right则会向左移动
 //直至left=right跳出当前的a值，开始下一个a值去遍历新的可能的元组
 vector<vector<int>> threeSum(vector<int>& nums) {

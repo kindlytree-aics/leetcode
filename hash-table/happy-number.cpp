@@ -1,6 +1,5 @@
 /*
-
-来源：力扣（LeetCode）
+题目来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/happy-number
 
 编写一个算法来判断一个数 n 是不是快乐数。
