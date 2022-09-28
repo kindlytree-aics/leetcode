@@ -38,6 +38,7 @@ std::vector<int> getNext(std::string s)
     //第一种情况：A[temp]等于A[i]，也就是说在前一个next结果上又多了一个字符串相同的长度，因此next[i]为next[i-1]+1
     //当A[temp]和A[i]不相等的时候，我们需要缩小temp,把temp变成next[temp-1]，直到A[temp]=A[i]为止。A[now]=A[i]时，就可以直接向右扩展了。
     //temp记录当前的匹配位置，i从1开始，temp从0开始
+    //next里记录了最长相同前后缀的长度
     std::vector<int> next(s.size(), 0);
     int i = 1, temp = 0;
     while(i < s.size())
@@ -48,6 +49,8 @@ std::vector<int> getNext(std::string s)
             next[i] = temp;
             i++;
         }else if(temp > 0){
+            //不等时，需要找到当前的temp-1的串的最长最前最后子串，并返回改串长度值
+            //并开始下一次和s[i]的比较（此时s[i]中的i）不动
             temp = next[temp-1];
         }else{
             //temp为0，从字符串开头开始匹配
