@@ -43,3 +43,43 @@ myStack.empty(); // 返回 False
  
 进阶：你能否仅用一个队列来实现栈。
 */
+
+
+#include<queue>
+
+//思路1：题目中要用两个队列模拟堆栈，可以用一个队列做备份，pop时将前面的元素push到备份队列中
+//取出最后一个后，再将从备份队列中push回来
+//思路2：只用一个队列，也可以实现，将队列前面的元素重新添加到队尾就可以
+//下面就写一下思路2；
+class MyStack {
+public:
+    std::queue<int> queue;
+
+public:
+    void push(int x) //将元素 x 推到队列的末尾
+    {
+        queue.push(x);
+
+    }
+    int pop() //从队列的开头移除并返回元素
+    {
+        int qsize = queue.size();
+        while(qsize > 1)
+        {
+            queue.push(queue.front());
+            queue.pop();
+            qsize--;
+        }
+        int result = queue.front();
+        queue.pop();
+        return result;
+    }
+    int top() //返回队列开头的元素
+    {
+        return queue.back();
+    }
+    bool empty() //如果队列为空，返回 true ；否则，返回 false
+    {
+        return queue.empty();
+    }
+};
