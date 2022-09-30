@@ -21,6 +21,20 @@
 - 栈和队列相关算法题目，stack-queue子目录
 - To be continued...
 
+### 特殊数据结构的使用
+- [无序集合 unordered_set](./hash-table/happy-number.cpp)
+- [无序字典 unordered_map](./hash-table/two-sum.cpp)
+- [双端队列 deque](./stack-queue/sliding-window-maximum.cpp)
+- [优先队列 priority_queue](./stack-queue/top-k-frequent-elements.cpp)
+- To be continued...
+
+### 关键算法
+- [KMP](./string/find-the-index-of-the-first-occurrence-in-a-string.cpp)
+- [判断字符串是否有子串重复组成](./string/repeated-substring-pattern.cpp)
+- [判断链表中是否存在环并返回环入口节点](./linked-list/linked-list-cycle.cpp)
+- [删除链表中倒数第n个节点](./linked-list/remove-nth-node-from-end-of-list.cpp)
+- To be continued...
+
 ### 更多内容
 - 视频内容： https://space.bilibili.com/505620745/channel/seriesdetail?sid=2636025
 - 抖音号：kindlytree_aics
