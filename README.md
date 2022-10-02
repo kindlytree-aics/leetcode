@@ -19,6 +19,7 @@
 - 哈希表相关算法题目，hash-table子目录
 - 字符串相关算法题目，string子目录
 - 栈和队列相关算法题目，stack-queue子目录
+- 二叉树相关算法题目， binary-tree子目录
 - To be continued...
 
 ### 特殊数据结构的使用
