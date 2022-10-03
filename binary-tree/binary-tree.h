@@ -34,7 +34,12 @@ TreeNode* buildBinaryTree(std::vector<int>& root)
                 cur_node_ = node;
                 stack_.push(node);
             }else{
-                if(i > 1 && root[i-1] == NULL)
+                while(cur_node_->left && cur_node_->right)
+                {
+                    stack_.pop();
+                    cur_node_ = stack_.top();
+                }
+                if(cur_node_->left || root[i-1] == NULL)
                 {
                     cur_node_->right = node;
                     cur_node_ = node;
@@ -42,8 +47,23 @@ TreeNode* buildBinaryTree(std::vector<int>& root)
                 }else{
                     cur_node_->left = node;
                     cur_node_ = node;
-                    stack_.push(node);
+                    stack_.push(node);                   
                 }
+                // while(cur_node_->left && cur_node_->right)
+                // {
+                //     stack_.pop();
+                //     cur_node_ = stack_.top();
+                // }
+                // if(i > 1 && root[i-1] == NULL)
+                // {
+                //     cur_node_->right = node;
+                //     cur_node_ = node;
+                //     stack_.push(node);
+                // }else{
+                //     cur_node_->left = node;
+                //     cur_node_ = node;
+                //     stack_.push(node);
+                // }
             }
         }
     }
