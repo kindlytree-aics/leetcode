@@ -9,7 +9,7 @@ typedef struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 }TreeNode;
 
-
+//以先序遍历构建二叉树
 TreeNode* buildBinaryTree(std::vector<int>& root)
 {
     TreeNode* root_node_ = nullptr, *cur_node_ = nullptr;
@@ -34,7 +34,8 @@ TreeNode* buildBinaryTree(std::vector<int>& root)
                 cur_node_ = node;
                 stack_.push(node);
             }else{
-                while(cur_node_->left && cur_node_->right)
+                //while(cur_node_->left && cur_node_->right)
+                while(cur_node_->right)
                 {
                     stack_.pop();
                     cur_node_ = stack_.top();
