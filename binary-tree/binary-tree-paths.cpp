@@ -24,14 +24,12 @@
 树中节点的数目在范围 [1, 100] 内
 -100 <= Node.val <= 100
 */
-
 #include <vector>
 #include <iostream>
 #include "binary-tree.h"
 #include <stack>
 #include <queue>
 #include <string>
-
 //std::vector<std::string>&paths
 //std::vector<std::string>&paths_
 void binaryTreePathsRecursive(TreeNode* root, std::string path, std::vector<std::string>&paths_) {
@@ -58,12 +56,10 @@ void binaryTreePathsRecursive(TreeNode* root, std::string path, std::vector<std:
     }
 }
 
-
 // std::vector<std::string> binaryTreePathsV1(TreeNode* root) {
 //     std::vector<std::string> all_paths_;
 //     //binaryTreePathsRecursive(root, all_paths_);
 // }
-
 std::vector<std::string> binaryTreePaths(TreeNode* root) {
     std::stack<TreeNode*>stack_;
     std::vector<std::string>all_paths_;

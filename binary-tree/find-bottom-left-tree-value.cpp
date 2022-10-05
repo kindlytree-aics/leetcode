@@ -27,7 +27,6 @@
 //#include <stack>
 #include <queue>
 
-
 int findBottomLeftValue(TreeNode* root) {
     std::queue<TreeNode*>queue_;
     if(root)
