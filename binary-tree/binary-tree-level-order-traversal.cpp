@@ -31,7 +31,6 @@
 //用队列结构实现，队列先进先出，满足层次的需求
 //在遍历每一层开始时，是知道当前队列的长度的，pop这个个长度的内容，就可以输出该层的内容
 //同时下一层的内容也就已经在队列里边了，一层层就可以这样输出
-
 //在这里我们
 std::vector<std::vector<int>> levelOrder(TreeNode* root) {
     std::queue<TreeNode*> queue_;
