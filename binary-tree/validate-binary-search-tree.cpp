@@ -50,8 +50,15 @@ void inorderTraverse(TreeNode* root, std::vector<int>&inorder){
 
 bool isValidBST(TreeNode* root) {
     std::vector<int> inorder;
-    
-
+    inorderTraverse(root, inorder);
+    for(int i =1; i< inorder.size(); i++)
+    {
+        if(inorder[i] <= inorder[i-1])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 
