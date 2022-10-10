@@ -182,35 +182,23 @@
 //     return root_trim_lower_upper_;
 // }
 
-TreeNode* buildSortedArrayToBst(std::vector<int>& nums, int left, int right)
-{
-    if(left > right || nums.size() == 0) return nullptr;
-    int middle = left + (right-left)/2;
-    TreeNode* node = new TreeNode(nums[middle]);
-    if(left == right)
-    {
-        return node;
-    }else
-    {
-        node->left = buildSortedArrayToBst(nums, left, middle-1);
-        node->right = buildSortedArrayToBst(nums, middle+1, right);
-    }
-    return node;
+TreeNode* trimBST(TreeNode* root, int low, int high) {
+    if (root == nullptr) return nullptr;
+    if (root->val < low) return trimBST(root->right, low, high);
+    if (root->val > high) return trimBST(root->left, low, high);
+    root->left = trimBST(root->left, low, high);
+    root->right = trimBST(root->right, low, high);
+    return root;
 }
 
-TreeNode* sortedArrayToBST(std::vector<int>& nums) {
-    //int 
-    TreeNode* node = buildSortedArrayToBst(nums, 0, nums.size()-1);
-    return node;
-}
 
 int main(){
     //std::vector<int> root = {3,0,4,NULL,2,NULL,NULL,1};
-    std::vector<int> nums = {-10,-3,0,5,9};
-    //TreeNode* root_node_ = buildBinaryTree(root);
-    //[3,0,4,null,2,null,null,1]
-    //1
-    //3
-    TreeNode* root_node_ = sortedArrayToBST(nums);
+    // std::vector<int> nums = {-10,-3,0,5,9};
+    // //TreeNode* root_node_ = buildBinaryTree(root);
+    // //[3,0,4,null,2,null,null,1]
+    // //1
+    // //3
+    // TreeNode* root_node_ = trimBST(nums);
     std::cout << std::endl;
 }

@@ -26,3 +26,41 @@
 -104 <= nums[i] <= 104
 nums 按 严格递增 顺序排列
 */
+
+#include <vector>
+#include <iostream>
+#include "binary-tree.h"
+#include <queue>
+
+TreeNode* buildSortedArrayToBst(std::vector<int>& nums, int left, int right)
+{
+    if(left > right || nums.size() == 0) return nullptr;
+    int middle = left + (right-left)/2;
+    TreeNode* node = new TreeNode(nums[middle]);
+    if(left == right)
+    {
+        return node;
+    }else
+    {
+        node->left = buildSortedArrayToBst(nums, left, middle-1);
+        node->right = buildSortedArrayToBst(nums, middle+1, right);
+    }
+    return node;
+}
+
+TreeNode* sortedArrayToBST(std::vector<int>& nums) {
+    //int 
+    TreeNode* node = buildSortedArrayToBst(nums, 0, nums.size()-1);
+    return node;
+}
+
+int main(){
+    //std::vector<int> root = {3,0,4,NULL,2,NULL,NULL,1};
+    std::vector<int> nums = {-10,-3,0,5,9};
+    //TreeNode* root_node_ = buildBinaryTree(root);
+    //[3,0,4,null,2,null,null,1]
+    //1
+    //3
+    TreeNode* root_node_ = sortedArrayToBST(nums);
+    std::cout << std::endl;
+}
