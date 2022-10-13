@@ -79,6 +79,32 @@ std::vector<std::vector<int>> levelOrder(TreeNode* root) {
     return result;
 }
 
+//更简洁的实现;
+std::vector<std::vector<int>> levelOrderv1(TreeNode* root) {\
+    std::vector<std::vector<int>> result;
+    if(!root){return result;}
+    std::queue<TreeNode*> queue_;
+    queue_.push(root);
+    while(!queue_.empty())
+    {
+        std::vector<int> cur_level_res_;
+        for(int i = 0; i < queue_.size(); i++)
+        {
+            TreeNode* cur_node_ = queue_.front();
+            queue_.pop();
+            if(cur_node_->left){
+                queue_.push(cur_node_->left);
+            }
+            if(cur_node_->right)
+            {
+                queue_.push(cur_node_->right);
+            }
+            cur_level_res_.push_back(cur_node_->val);
+        }
+        result.push_back(cur_level_res_;)
+    }
+    return result;
+}
 
 int main(){
     //std::vector<int> root = {1,NULL,2,3};
