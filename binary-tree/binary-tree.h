@@ -1,6 +1,9 @@
 #include<stack>
 #include<queue>
 
+#define INT_MAX ((int)(~0U>>1))
+#define INT_MIN (-INT_MAX - 1)
+
 typedef struct TreeNode {
     int val;
     TreeNode *left;

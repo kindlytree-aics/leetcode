@@ -27,7 +27,8 @@
 #include "binary-tree.h"
 #include <queue>
 
-
+#define INT_MAX ((int)(~0U>>1))
+#define INT_MIN (-INT_MAX - 1)
 //用队列结构实现，队列先进先出，满足层次的需求
 //在遍历每一层开始时，是知道当前队列的长度的，pop这个个长度的内容，就可以输出该层的内容
 //同时下一层的内容也就已经在队列里边了，一层层就可以这样输出
@@ -88,7 +89,8 @@ std::vector<std::vector<int>> levelOrderv1(TreeNode* root) {\
     while(!queue_.empty())
     {
         std::vector<int> cur_level_res_;
-        for(int i = 0; i < queue_.size(); i++)
+        int cur_level_size = queue_.size();
+        for(int i = 0; i < cur_level_size; i++)
         {
             TreeNode* cur_node_ = queue_.front();
             queue_.pop();
@@ -101,7 +103,7 @@ std::vector<std::vector<int>> levelOrderv1(TreeNode* root) {\
             }
             cur_level_res_.push_back(cur_node_->val);
         }
-        result.push_back(cur_level_res_;)
+        result.push_back(cur_level_res_);
     }
     return result;
 }
@@ -114,7 +116,7 @@ int main(){
     //std::vector<int> root = {1,NULL,2};
     std::vector<int> root = {3,1,NULL,NULL,2};
     TreeNode* root_node_ = buildBinaryTree(root);
-    std::vector<std::vector<int>> result_level = levelOrder(root_node_);
+    std::vector<std::vector<int>> result_level = levelOrderv1(root_node_);
     for(int i = 0; i < result_level.size(); i++)
     {
         for(int j = 0; j < result_level[i].size(); j++)

@@ -30,23 +30,26 @@ digits[i] 是范围 ['2', '9'] 的一个数字。
 #include <iostream>
 #include <queue>
 
-
-void letterCombinationsv1(string& digits, int idx, string& s, std::string path, std::vector<std::string>&res) {
+void letterCombinationsv1(std::string& digits, int idx, std::string& s, std::string path, std::vector<std::string>&res) {
     if(idx == digits.size()-1)
     {
-        std::string  idx_candiates = s(s.end()-4, s.end());
+        int digit_idx = digits[idx]-50;
+        int start = digit_idx*3, end = digit_idx==7?(digit_idx+1)*3+1:(digit_idx+1)*3;
+        std::string  idx_candiates(s.begin()+start, s.begin()+end);
         for(int j = 0; j < idx_candiates.size(); j++)
         {
             path.push_back(idx_candiates[j]);
             //letterCombinations(digits, idx+1, s, path);
-            res.push_back(path)
+            res.push_back(path);
             path.pop_back();
         }
-        res.push_back(path);
+        //res.push_back(path);
     }
     else{
         //int idx = digits[i]- 49-1;
-        std::string  idx_candiates = s(s.begin()+idx*3, s.begin()+(idx+1)*3);
+        int digit_idx = digits[idx]-50;
+        int start = digit_idx*3, end = digit_idx==7?(digit_idx+1)*3+1:(digit_idx+1)*3;
+        std::string  idx_candiates(s.begin()+start, s.begin()+end);
         for(int j = 0; j < idx_candiates.size(); j++)
         {
             path.push_back(idx_candiates[j]);
@@ -56,7 +59,7 @@ void letterCombinationsv1(string& digits, int idx, string& s, std::string path, 
     }
 }
 
-std::vector<std::string> letterCombinations(string digits) {
+std::vector<std::string> letterCombinations(std::string digits) {
     std::vector<std::string> res;
     std::string s="abcdefghijklmnopqrstuvwxyz";
     std::string path="";
@@ -65,10 +68,7 @@ std::vector<std::string> letterCombinations(string digits) {
 }
 
 int main()
-{
-     
+{  
      std::string digits = "23";
      std::vector<std::string> res = letterCombinations(digits);
-
-
 }
