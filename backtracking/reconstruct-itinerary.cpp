@@ -78,7 +78,7 @@ void findItineraryv1(std::vector<std::vector<std::string>>& tickets, std::vector
     }
 }
 
-//std::map key有序
+//std::map key有序 map底层是基于红黑树实现的。
 bool findItineraryv2(int ticket_size, std::unordered_map<std::string, std::map<std::string, int>>& targets, \
                 std::vector<std::string>& path, std::vector<std::vector<std::string>>&results)
 {
