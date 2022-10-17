@@ -50,6 +50,7 @@ int maxProfit(std::vector<int>& prices) {
     broke_status status_ = broke_status::unknown ;
     while(i < prices.size())
     {   
+        //等于0可以理解为状态保持不变，不需要记录
         if(prices[i]-prices[i-1] > 0)
         {
             if(status_ == broke_status::increasing)
