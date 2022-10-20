@@ -57,6 +57,7 @@ bool cmp1 (std::pair<long, int>& a,std::pair<long, int>&b)
 //跨度最小的那个肯定要有一支箭在它的范围，这样包含它的肯定消除，有重叠但没有完全覆盖的要看情况
 //要看左边界射的消失的多还是右边界射的时候消失的多
 //[[9,12],[1,10],[4,11],[8,12],[3,9],[6,9],[6,7]]
+//此思路比较笨重，在特殊场合下时间性能不能满足要求；
 int findMinArrowShots(std::vector<std::vector<int>>& points) {
     //std::sort(points.begin(),points.end(), cmp);
     if(points.size() == 1)return 1;
@@ -149,6 +150,8 @@ int findMinArrowShots(std::vector<std::vector<int>>& points) {
     }
     return arrow_count;
 }
+
+//https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/solutions/494515/yong-zui-shao-shu-liang-de-jian-yin-bao-qi-qiu-1-2/
 
 int main()
 {

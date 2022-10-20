@@ -108,6 +108,33 @@ std::vector<std::vector<int>> levelOrderv1(TreeNode* root) {\
     return result;
 }
 
+//更简洁的实现;
+int  getBinaryTreeHeight(TreeNode* root) {
+    if(!root){return 0;}
+    std::queue<TreeNode*> queue_;
+    queue_.push(root);
+    int height = 0;
+    while(!queue_.empty())
+    {
+        //层序遍历，首先获取当前层的节点数，以便于控制for循环中按照层序的方式出队和入队的方式
+        int cur_level_size = queue_.size();
+        for(int i = 0; i < cur_level_size; i++)
+        {
+            TreeNode* cur_node_ = queue_.front();
+            queue_.pop();
+            if(cur_node_->left){
+                queue_.push(cur_node_->left);
+            }
+            if(cur_node_->right)
+            {
+                queue_.push(cur_node_->right);
+            }
+        }
+        height++;
+    }
+    return height;
+}
+
 int main(){
     //std::vector<int> root = {1,NULL,2,3};
     //std::vector<int> root = {2,3,NULL,1};
