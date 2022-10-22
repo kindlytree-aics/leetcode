@@ -25,25 +25,31 @@
 
 */
 
-//一个nk的矩阵mul[n][n],其中k最大为n，最终求mul[n][:](python表示法)的最大值
-//n[2][2]=[1,1]=1
-//n[3][2]=max{[[2,1],[1,2]]}=2,n[3][3]=[1,1,1]=1,对称的可以认为重复,如[2,1],[1,2],可以考虑按数排序
-//n[4][2]=max{[[1,3],[2,2]]}=4
-//n[5][2]=max{[[1,4],[2,3]]}=6
-//n[6][2]=max{[[1,4],[2,4],[3,3]]}=9
-//...
-//n[3][3]
-//n[4][3]
-//n[5][3]
-//...
-//n[4][4]
-//n[5][4]
-int integerBreak(int n) {
+//官方解答：https://leetcode.cn/problems/integer-break/solutions/352875/zheng-shu-chai-fen-by-leetcode-solution/
+//方法，动态规划dp[i]=max(j*(i-j), j*dp[i-j])(1<=j<=i-1)，其中d[i]表示将i分拆成k(k>=2)个正正数后最大的乘积;
+//d[2]=[1,1]=1,dp[3]=max([1,2],1*d[2])=2,dp[4]=max[max([1,3],1*dp[3], max([2,2],2*dp[2]))
+//当为i时，可以将i拆分成j和i-j(i-j不继续分拆)，以及i-j继续分拆，这个时候可以记为dp[i-j]
+//同时上述的j的范围可以从1到i-1
 
+#include <vector>
+
+int integerBreak(int n) {
+    std::vector<int> dp(n+1, 1);
+    if(n==2)return 1;
+    for(int i = 3; i <= n; i++)
+    {
+        for(int j = 1; j<= i-1; j++)
+        {
+            int temp_max = std::max(j*(i-j),j*dp[i-j]);
+            dp[i] = std::max(temp_max, dp[i]);
+        }
+    }
+    return dp[n];
 }
 
 int main()
 {
-
+    int n = 10;
+    int res = integerBreak(n);
     return 0;
 }
