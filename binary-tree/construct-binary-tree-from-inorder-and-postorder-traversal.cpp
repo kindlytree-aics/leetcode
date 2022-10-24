@@ -46,6 +46,13 @@ int findValueIndex(std::vector<int>&nums, int value)
     return -1;
 }
 
+//后序遍历中最后一个节点为根节点
+//到中序遍历中找到该节点，该节点左边为左子树，右边为右子树
+//关键在于后续遍历中怎么区分左子树和右子树的边界？后续遍历的右子树的根节点在右子树的最右边，也是倒数第二个
+//假设中序遍历的根节点索引位置为index,
+//左边为左子树，后面遍历也是先左子树，然后右子树，最后根节点，所以其对应的对应的左子树的索引范围位置一样，
+//只是右子树上从index开始，到倒数第二个，因为最后一个位置是根节点的位置
+//递归调用这个过程即可
 TreeNode* buildTreeRecursive( std::vector<int>& inorder, std::vector<int>& postorder) {
     if(inorder.size() == 0) return NULL;
     int root_val_ = postorder.back();

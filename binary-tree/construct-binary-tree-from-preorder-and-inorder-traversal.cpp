@@ -30,6 +30,10 @@ inorder 保证 为二叉树的中序遍历序列
 #include "binary-tree.h"
 # include <algorithm>
 
+//从前序和中序遍历序列
+//前序的第一个节点为根节点，到中序遍历的结果中去找到该节点索引(左边为左子树，假设长度为l，右边为右子树)
+//再从前序遍历中将1-l个元素作为左子树（因为前序遍历中左子树的元素均在右子树前面），后面的元素作为右子树
+//找到了对应的左子树和右子树的子数组后，递归调用即可
 int findValueIndex(std::vector<int>&nums, int value)
 {
     for(int i = 0; i < nums.size(); i++)

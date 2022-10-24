@@ -108,7 +108,7 @@ std::vector<std::vector<int>> levelOrderv1(TreeNode* root) {\
     return result;
 }
 
-//更简洁的实现;
+//获取二叉树的高度;
 int  getBinaryTreeHeight(TreeNode* root) {
     if(!root){return 0;}
     std::queue<TreeNode*> queue_;

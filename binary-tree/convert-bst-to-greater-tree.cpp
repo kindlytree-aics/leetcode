@@ -47,6 +47,7 @@
 #include "binary-tree.h"
 #include <queue>
 
+//按照题目的要求，应该采用中序遍历，而且先右子树然后左子树的顺序进行遍历，使得给节点赋新值的时候原树的大于其节点的值的和已经计算出来
 TreeNode* convertBST(TreeNode* root, int& cur_value_) {
     if(root)
     {

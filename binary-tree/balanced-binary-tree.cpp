@@ -90,7 +90,7 @@ bool isBalancedv0(TreeNode* root) {
     return true;
 }
 
-//后续递归求解
+//后序递归求解
 bool nodeHeight(TreeNode* root, int& height)
 {
     if(!root) 

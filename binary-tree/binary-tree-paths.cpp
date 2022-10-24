@@ -32,6 +32,7 @@
 #include <string>
 //std::vector<std::string>&paths
 //std::vector<std::string>&paths_
+//通过递归实现，注意path变量不是引用，而是一般变量
 void binaryTreePathsRecursive(TreeNode* root, std::string path, std::vector<std::string>&paths_) {
     if(root)
     {
@@ -60,6 +61,7 @@ void binaryTreePathsRecursive(TreeNode* root, std::string path, std::vector<std:
 //     std::vector<std::string> all_paths_;
 //     //binaryTreePathsRecursive(root, all_paths_);
 // }
+//通过遍历的方式实现，以下方法有些繁琐，不建议使用
 std::vector<std::string> binaryTreePaths(TreeNode* root) {
     std::stack<TreeNode*>stack_;
     std::vector<std::string>all_paths_;
