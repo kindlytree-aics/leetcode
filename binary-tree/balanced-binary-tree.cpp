@@ -35,11 +35,10 @@
 #include <unordered_map>
 
 //就是求二叉树的层数，和层序遍历的思想类似；在这里就暂时不重复写了
-//int maxDepth(TreeNode* root) {
-//
-//}
 
-bool isBalanced(TreeNode* root) {
+
+//下面的代码采用后序遍历的非递归方式实现，求得每一个节点得层数（高度），并将左右子节点的高度进行比较
+bool isBalancedv0(TreeNode* root) {
     std::stack<TreeNode*>stack_;
     std::unordered_map<TreeNode*, int>node_depth_map_;
     if(root){
@@ -56,9 +55,9 @@ bool isBalanced(TreeNode* root) {
         }else{
             cur_node_ = stack_.top();
             stack_.pop();
-            if(!cur_node_->left && !cur_node_->right){
+            if(!cur_node_->left && !cur_node_->right){//左右子树均为空，叶子节点，记深度为1，这里不以树的根节点去记录深度
                 node_depth_map_[cur_node_] = 1;
-            }else if(cur_node_->left && cur_node_->right){
+            }else if(cur_node_->left && cur_node_->right){//左右子树均不为空的情况
                 int left_depth_ = node_depth_map_[cur_node_->left];
                 int right_depth_ = node_depth_map_[cur_node_->right];
                 if(abs(left_depth_-right_depth_) >= 2){
@@ -66,15 +65,15 @@ bool isBalanced(TreeNode* root) {
                 }
                 node_depth_map_[cur_node_] = (left_depth_ > right_depth_ ? left_depth_: right_depth_) + 1;
             }else{
-                if(cur_node_->left && node_depth_map_[cur_node_->left] > 1)
+                if(cur_node_->left && node_depth_map_[cur_node_->left] > 1)//右子树为空且左子树的深度大于1，高度差大于1
                 {
                     return false;
                 }
-                if(cur_node_->right && node_depth_map_[cur_node_->right] > 1)
+                if(cur_node_->right && node_depth_map_[cur_node_->right] > 1)//左子树为空且右子树的深度大于1，高度差大于1
                 {
                     return false;
                 }else{
-                    node_depth_map_[cur_node_] = 2;
+                    node_depth_map_[cur_node_] = 2;//有左树或右子树，且存在的那个子节点的深度为1，当前节点的深度变为2
                 }
             }
             continue;
@@ -90,6 +89,33 @@ bool isBalanced(TreeNode* root) {
     }
     return true;
 }
+
+//后续递归求解
+bool nodeHeight(TreeNode* root, int& height)
+{
+    if(!root) 
+    {
+        height = 0;
+        return true;
+    }
+    int left_height, right_height;
+    if(!nodeHeight(root->left, left_height))return false;
+    if(!nodeHeight(root->right, right_height))return false;
+    int height_diff = abs(left_height-right_height);
+    if(height_diff >= 2)
+    {
+        return false;
+    }
+    height = std::max(left_height, right_height) + 1;
+    return true;
+}
+
+bool isBalanced(TreeNode* root) {
+    int height;
+    bool is_balanced = nodeHeight(root, height);
+    return is_balanced; 
+}
+
 
 int main(){
     //std::vector<int> root = {1,2,3,4, NULL, NULL, 4, NULL, NULL,3,NULL, NULL, 2, NULL, NULL};
