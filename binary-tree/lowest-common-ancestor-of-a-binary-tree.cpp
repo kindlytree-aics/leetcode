@@ -67,29 +67,60 @@ void pathToNode(TreeNode* root, \
 
 //递归方法，分别递归调用左子树和右子树找节点，如果都能找到，则肯定是最近公共祖先
 //该方法可能会有多于的计算，即使已经找到也会计算下去
-TreeNode* lowestCommonAncestorv1(Trv1eeNode* root, TreeNode* p, TreeNode* q) {
-    if (root == q || root == p || root == NULL) return root;
-    TreeNode* left = lowestCommonAncestor(root->left, p, q);
-    TreeNode* right = lowestCommonAncestor(root->right, p, q);
+TreeNode* lowestCommonAncestorv1(TreeNode* root, TreeNode* p, TreeNode* q) {
+    if (root->val == q->val || root->val == p->val || root == NULL) return root;
+    TreeNode* left = lowestCommonAncestorv1(root->left, p, q);
+    TreeNode* right = lowestCommonAncestorv1(root->right, p, q);
     if (left != NULL && right != NULL) return root;
     if (left == NULL) return right;
     return left;
 }
 
-enum found_status{found_none, found_p, found_q, found_both};
-
-bool lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q TreeNode** d) {
-    if (root == q || root == p || root == NULL) return root;
-    TreeNode* left = lowestCommonAncestor(root->left, p, q);
-    TreeNode* right = lowestCommonAncestor(root->right, p, q);
-    if (left != NULL && right != NULL) 
+//enum found_status{found_none=0, found_p=1, found_q=2, found_both=3, found_finished=4;};
+//另一种递归方法，找到后就直接返回4，后面的就不需要再去找了，和上面的递归相比，在有时节省了部分多余的计算
+int lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode** d) {
+    //if (root == q || root == p || root == NULL) return root;
+    int status  = 0;
+    // if(root->val == p->val){status = 1;}
+    // if(root->val == q->val){status =  2;}
+    if(root == nullptr){ return  0;}
+    int status_left =  lowestCommonAncestor(root->left, p, q, d);
+    if(status_left >=4){return status_left;}
+    if(status_left == 3)
+    {
+        *d = root->left;
+        return 4;      
+    }
+    status += status_left;
+    if(root == p)
+    {
+        status += 1;
+    }
+    else if(root == q)
+    {
+        status +=  2;
+    }    
+    if(status == 3) 
     {
         *d = root;
-        return true;
-        //return root;
+        return 4;
     }
-    if (left == NULL) return right;
-    return left;
+    int status_right =  lowestCommonAncestor(root->right, p, q, d);
+    if(status_right == 3) 
+    {
+        *d = root->right;
+        return 4;
+    }
+    if(status_right >=4){return status_right;}
+    status += status_right;
+    if(status == 3) 
+    {
+        *d = root;
+        return 4;
+    }  
+    else{
+        return status;
+    }
 }
 
 TreeNode* lowestCommonAncestorv0(TreeNode* root, TreeNode* p, TreeNode* q) {
@@ -118,6 +149,7 @@ int main(){
     int p=5, q=1;
     TreeNode* tree_node_p_ = new TreeNode(p);
     TreeNode* tree_node_q_ = new TreeNode(q);
-    TreeNode* ancestor = lowestCommonAncestor(root_node_, tree_node_p_, tree_node_q_);
+    TreeNode* d = nullptr;
+    int status = lowestCommonAncestor(root_node_, tree_node_p_, tree_node_q_, &d);
     std::cout << std::endl;
 }
