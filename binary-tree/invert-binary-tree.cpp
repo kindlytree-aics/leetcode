@@ -31,7 +31,7 @@
 #include <queue>
 
 
-
+//按照层序遍历也是可以的，遍历每个节点，将左右子树互换。
 TreeNode* invertTree(TreeNode* root) {
     std::queue<TreeNode*> queue_;
     if(root)
@@ -61,6 +61,7 @@ TreeNode* invertTree(TreeNode* root) {
     return root;
 }
 
+//递归调用即可
 TreeNode* invertTreeRecursive(TreeNode* root) {
     if(root){
         TreeNode* cur_node_left_ = root->left;

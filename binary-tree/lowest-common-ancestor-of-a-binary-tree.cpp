@@ -65,11 +65,29 @@ void pathToNode(TreeNode* root, \
     return;
 }
 
-TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+//递归方法，分别递归调用左子树和右子树找节点，如果都能找到，则肯定是最近公共祖先
+//该方法可能会有多于的计算，即使已经找到也会计算下去
+TreeNode* lowestCommonAncestorv1(Trv1eeNode* root, TreeNode* p, TreeNode* q) {
     if (root == q || root == p || root == NULL) return root;
     TreeNode* left = lowestCommonAncestor(root->left, p, q);
     TreeNode* right = lowestCommonAncestor(root->right, p, q);
     if (left != NULL && right != NULL) return root;
+    if (left == NULL) return right;
+    return left;
+}
+
+enum found_status{found_none, found_p, found_q, found_both};
+
+bool lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q TreeNode** d) {
+    if (root == q || root == p || root == NULL) return root;
+    TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    TreeNode* right = lowestCommonAncestor(root->right, p, q);
+    if (left != NULL && right != NULL) 
+    {
+        *d = root;
+        return true;
+        //return root;
+    }
     if (left == NULL) return right;
     return left;
 }

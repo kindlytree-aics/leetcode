@@ -27,6 +27,7 @@
 //#include <stack>
 #include <queue>
 
+//方法：层序遍历，记录当前遍历层的输出，最后返回最后一层的最先输出的结果
 int findBottomLeftValue(TreeNode* root) {
     std::queue<TreeNode*>queue_;
     if(root)

@@ -68,14 +68,14 @@ TreeNode* deleteNode(TreeNode* root, TreeNode* parent, int key) {
             root = root->right;
             delete temp;
             temp = nullptr;
-        }else if(root->left && !root->right)
+        }else if(root->left && !root->right)//如果右子树为空，左子树不为空
         {
             parent->left == root ? parent->left = root->left:parent->right = root->left;
             TreeNode* temp = root;
             root = root->left;
             delete temp;  
             temp = nullptr;       
-        }else if(!root->left && !root->right)
+        }else if(!root->left && !root->right)//如果左右子树均为空，直接删除节点
         {
             parent->left == root ? parent->left = nullptr: parent->right = nullptr;
             delete root;
@@ -84,7 +84,7 @@ TreeNode* deleteNode(TreeNode* root, TreeNode* parent, int key) {
         else{
             TreeNode* temp = root->right;
             //删除节点的左右子树非空，从右边节点找到要补上来的点值
-            //如果有子树的左边节点为空，则直接将右子树的右边补上
+            //如果右子树的左子树根节点为空，则直接将右子树的右边补上
             //直接删除temp，将其右节点拼接上
             if(!temp->left && temp->right)
             {

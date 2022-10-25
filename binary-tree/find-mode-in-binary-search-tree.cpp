@@ -47,7 +47,7 @@ struct cmp {
 };
 
 
-//中序遍历递增,如果有重复的数字，则这些数字相邻
+//中序遍历的结果满足递增条件,如果有重复的数字，则这些数字相邻
 void inorderTraverse(TreeNode* root, std::vector<int>&inorder){
     if(root){
         if(root->left){
@@ -63,8 +63,8 @@ void inorderTraverse(TreeNode* root, std::vector<int>&inorder){
     }
 }
 
-//这道题可以不用priority_queue
-//直接将map转换为vector，再对vector进行排序
+//这道题可以不用priority_queue，可以用map，key为值，value为值对应的个数
+//然后直接将map转换为vector，再对vector进行排序
 //vector<pair<int, int>> vec(map.begin(), map.end());
 //sort(vec.begin(), vec.end(), cmp); // 给频率排个序
 //result.push_back(vec[0].first);
@@ -74,8 +74,6 @@ void inorderTraverse(TreeNode* root, std::vector<int>&inorder){
 //    else break;
 //}
 //return result;
-
-
 std::vector<int> findMode(TreeNode* root) {
     std::vector<int> inorder;
     inorderTraverse(root, inorder);

@@ -36,6 +36,7 @@
 #include "binary-tree.h"
 #include <queue>
 
+//递归调用即可
 TreeNode* insertIntoBST(TreeNode* root, int val) {
     if(root == nullptr){
         TreeNode* node = new TreeNode(val);

@@ -31,6 +31,8 @@ p、q 为不同节点且均存在于给定的二叉搜索树中。
 #include "binary-tree.h"
 #include <queue>
 
+//如果当前根节点的值在两个节点之间，则直接返回该节点
+//如果当前节点值均大于两个节点，则到左子树中找公共祖先，否则到右子树中找公共祖先
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     if(root->val == p->val || root->val == q->val || root == nullptr){
         return root;
