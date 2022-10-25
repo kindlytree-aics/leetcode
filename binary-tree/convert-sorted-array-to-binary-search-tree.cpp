@@ -32,6 +32,9 @@ nums 按 严格递增 顺序排列
 #include "binary-tree.h"
 #include <queue>
 
+//数组的中间值作为根节点，左边的为左子树，右边的为右子树
+//再对左边和右边的子树分别递归调用上述流程，这样的二叉搜索时是平衡的
+
 TreeNode* buildSortedArrayToBst(std::vector<int>& nums, int left, int right)
 {
     if(left > right || nums.size() == 0) return nullptr;

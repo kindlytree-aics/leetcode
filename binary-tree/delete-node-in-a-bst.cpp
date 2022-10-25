@@ -47,6 +47,9 @@ root 是合法的二叉搜索树
 #include "binary-tree.h"
 #include <queue>
 
+//二叉搜索树是满足左子树比当前节点小，右子树比当前节点大的二叉树
+//首先找到要删除的节点，然后再执行删除操作
+
 TreeNode* deleteNode(TreeNode* root, TreeNode* parent, int key) {
     if(!root){return root;}
     if(root->val > key)
@@ -57,6 +60,8 @@ TreeNode* deleteNode(TreeNode* root, TreeNode* parent, int key) {
         deleteNode(root->right, root, key);
     }else{
         //特殊情况要记录parent节点；
+        //删除的节点左子树为空（右子树不空）
+        //直接将删除的节点的父节点的左子树根节点或右子树根节点的值赋为删除节点
         if(!root->left && root->right){
             parent->left == root ? parent->left = root->right:parent->right = root->right;
             TreeNode* temp = root;

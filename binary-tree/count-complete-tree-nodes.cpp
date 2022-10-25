@@ -54,10 +54,10 @@ int countNodes(TreeNode* root) {
             right_depth++;
             cur_node_right_ = cur_node_right_->right;
         }
-        if(left_depth == right_depth)
+        if(left_depth == right_depth)//以root为节点的子树是满二叉树
         {
-            return (2 << left_depth) -1;
-        }else
+            return (2 << left_depth) -1;//不用再计算子树的节点数，直接按公式2^depth-1来求
+        }else//不是满二叉树时再递归调用求其节点数
         {
             return 1+countNodes(root->left)+countNodes(root->right);
         }
@@ -67,7 +67,7 @@ int countNodes(TreeNode* root) {
         return 0;
     }
 }
-
+//该方法没有用到完全二叉树的特性，纯粹的递归调用
 int countNodesRecursivev1(TreeNode* root) {
     if(root)
     {
