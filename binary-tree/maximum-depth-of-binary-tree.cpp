@@ -30,7 +30,7 @@
 //int maxDepth(TreeNode* root) {
 //
 //}
-
+//思想，后续遍历，先分别求左子树和右子树的最大深度，然后得出当前节点的最大深度
 int maxDepthRecursive(TreeNode* root) {
     if(root)
     {

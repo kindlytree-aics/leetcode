@@ -36,6 +36,8 @@
 #include <stack>
 #include <queue>
 
+//方法：先序遍历,先合并根节点，然后递归合并左子树和右子树，如果左子树和右子树均为空则返回
+
 TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
     if(root1 && root2){
         TreeNode* node = new TreeNode(root1->val+root2->val);

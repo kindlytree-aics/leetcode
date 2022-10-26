@@ -50,6 +50,7 @@ nums 中的所有整数 互不相同
 #include <queue>
 #include <unordered_map>
 
+//这题的方法比较直接，先找到最大值创建节点，然后递归调用创建左子树和右子树
 TreeNode* constructMaximumBinaryTreeRecursive(std::vector<int>& nums, int left, int right)
 {
     if(left == right){
