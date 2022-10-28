@@ -28,6 +28,9 @@
 //层序遍历找到的第一个叶子节点即为最小深度
 //参考当前目录下binary-tree-level-order-traversal.cpp的实现
 //注意这里有定义是到最近的叶子节点
+
+//后序递归函数定义求解，先分别递归求左子树的最小深度和右子树的最小深度
+//然后比较小者为当前节点为根的树的最小深度
 int minDepthRecursive(TreeNode* root) {
     if(root)
     {

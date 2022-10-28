@@ -31,6 +31,7 @@ root 是二叉搜索树
 #include <stack>
 #include <queue>
 
+//比较简单的递归算法，直接递归求解
 TreeNode* searchBST(TreeNode* root, int val) {
     if(!root){
         return nullptr;

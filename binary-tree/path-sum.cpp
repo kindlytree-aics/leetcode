@@ -39,7 +39,34 @@
 #include "binary-tree.h"
 #include <stack>
 
+//更加高效的递归方法，只要有返回true的就返回。减少计算量
+bool hasPathSumRecursivev2(TreeNode* root, int sum, int target)
+{
+    if(root){
+        sum += root->val;
+    }else{
+        return false;
+    }
+    if(root->left){
+        if(hasPathSumRecursivev2(root->left, sum, target))return true;
+    }if(root->right)
+    {
+        if(hasPathSumRecursivev2(root->right, sum, target))return true;
+    }
+    else if(!root->left && !root->right){
+    //else{
+        if(sum == target)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
 
+
+//通过先序遍历求得所有从根节点到叶子节点的路径，然后去判断是否存在sum为target的值
 void hasPathSumRecursive(TreeNode* root, std::vector<int> path, std::vector<std::vector<int>>&all_paths)
 {
     if(root){
@@ -83,6 +110,8 @@ int main(){
     std::vector<int> root = {5, 4, 11, 7, NULL, NULL, 2, NULL, NULL,NULL, 8, 13, NULL, NULL, 4, NULL, 1, NULL, NULL};
     TreeNode* root_node_ = buildBinaryTree(root);
     int targetSum  = 22;
-    bool has_target_sum_ = hasPathSum(root_node_, targetSum);
+    //bool has_target_sum_ = hasPathSum(root_node_, targetSum);
+    int sum = 0;
+    bool has_target_sum_ = hasPathSumRecursivev2(root_node_, sum,  targetSum);
     std::cout << has_target_sum_ << std::endl;
 }

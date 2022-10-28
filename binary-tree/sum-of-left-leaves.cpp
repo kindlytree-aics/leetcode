@@ -6,15 +6,14 @@
 给定二叉树的根节点 root ，返回所有左叶子之和。
 
 示例 1：
-
 输入: root = [3,9,20,null,null,15,7] 
 输出: 24 
 解释: 在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24
-示例 2:
 
+
+示例 2:
 输入: root = [1]
 输出: 0
- 
 
 提示:
 
@@ -27,7 +26,26 @@
 #include "binary-tree.h"
 #include <queue>
 
-int sumOfLeftLeaves(TreeNode* root) {
+
+
+void sumOfLeftLeaves(TreeNode* root, TreeNode* parent, int& sum) {
+    if(root && !root->left && !root->right){
+        if(parent->left == root)
+        {
+            sum += root->val;
+        }
+    }else{
+        if(root->left){
+            sumOfLeftLeaves(root->left, root, sum);
+        }
+        if(root->right){
+            sumOfLeftLeaves(root->right, root, sum);
+        }
+    }
+}
+
+//层序遍历，判断每一个叶子节点是否是左叶子几点
+int sumOfLeftLeavesv0(TreeNode* root) {
     int sum_of_left_leaves_ = 0;
     std::queue<TreeNode*> queue_;
     if(root)
@@ -69,6 +87,10 @@ int main(){
     //std::vector<int> root = {3,9,NULL,NULL,20,15, NULL, NULL, 7, NULL, NULL};
     std::vector<int> root = {1,2,4,NULL,NULL, NULL,3, NULL,5, NULL, NULL};
     TreeNode* root_node_ = buildBinaryTree(root);
-    int result = sumOfLeftLeaves(root_node_);
-    std::cout << result << std::endl;
+    int sum = 0;
+    sumOfLeftLeaves(root_node_, root_node_, sum);
+    return 0;
+
+    //int result = sumOfLeftLeavesv0(root_node_);
+    //std::cout << result << std::endl;
 }
