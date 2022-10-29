@@ -24,7 +24,7 @@
 提示：
 
 树中节点数目范围在[1, 104] 内
--231 <= Node.val <= 231 - 1
+-2^31 <= Node.val <= 2^31 - 1
 */
 #include <vector>
 #include <iostream>
@@ -61,6 +61,53 @@ bool isValidBST(TreeNode* root) {
     return true;
 }
 
+//也可以递归实现，递归判断左节点是否小于当前节点，有节点是否大于当前节点（可以通过递归先序遍历）
+//下面的逻辑有缺陷，不能保证右子树的最小节点比根节点要大
+bool isValidBSTRecursiveOld(TreeNode* root) {
+    if(!root)return true;
+    if(root->left){
+        if(root->val <= root->left->val){
+            return false;
+        }else{
+            if(!isValidBSTRecursiveOld(root->left))
+            {
+                return false;
+            }
+        }
+    }
+    if(root->right)
+    {
+        if(root->val >= root->right->val){
+            return false;
+        }else{
+            if(!isValidBSTRecursiveOld(root->right))
+            {
+                return false;
+            }
+        }        
+    }
+}
+
+
+//中序遍历记录下数组判断和前面一个值的关系
+bool isValidBSTRecursive(TreeNode* root, std::vector<int>&path) {
+    if(!root)return true;
+    if(!isValidBSTRecursive(root->left, path))return false;
+    if(path.size() > 0)
+    {
+        int before_val_ = path.back();
+        if(before_val_ < root->val)
+        {
+            path.push_back(root->val);
+        }else{
+            return false;
+        }
+    }else{
+        path.push_back(root->val);
+    }
+    if(!isValidBSTRecursive(root->right, path))return false;
+    return true;
+}
 
 int main()
 {

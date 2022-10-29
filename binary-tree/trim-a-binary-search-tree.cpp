@@ -181,7 +181,7 @@
 //     TreeNode* root_trim_lower_upper_ = trimBSTUpper(root_trim_lower_, nullptr, high);
 //     return root_trim_lower_upper_;
 // }
-
+//递归调用结构相对比较简单
 TreeNode* trimBST(TreeNode* root, int low, int high) {
     if (root == nullptr) return nullptr;
     if (root->val < low) return trimBST(root->right, low, high);
