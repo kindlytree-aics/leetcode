@@ -63,6 +63,12 @@ void combinationSum2v1(std::vector<int>& candidates, int target, int sum, int id
         sum -= candidates[idx];
         used[idx]=false;
         idx++;
+        //连续数字有一样的情况，后面的数字和前面的数字相同，
+        //used[idx-1]什么时候设为了false呢？说明是递归已经回溯到更前面的时候的情况，这个时候说明前面已经使用过了
+        //如5555，如果已经回退到国第2个5了，则后面的55都不要再去往后取值了（已经取值过了）
+        //再次使用还会出现重复
+        //且前面的设为未使用（前面肯定先设为了true，然后再设置成false的），
+        //则后面的也要设为未使用
         while(idx >=1 && idx <= candidates.size()-1 && candidates[idx] == candidates[idx-1] && used[idx-1] == false)
         {
             used[idx] = false;

@@ -50,6 +50,7 @@
 // }
 
 void combinationSum(int k, int l, int r, int n, std::vector<int>path, int sum, std::vector<std::vector<int>>& res_) {
+    //当前递归层次的范围为1-r
     for(int i =l; i < r; i++)
     {
         path.push_back(i);
@@ -58,10 +59,12 @@ void combinationSum(int k, int l, int r, int n, std::vector<int>path, int sum, s
             res_.push_back(path);
         }else{
             if(path.size() < k && sum < n)
-            {
+            {   
+                //下一个递归层次为范围为i+1-r
                 combinationSum(k, i+1, r, n, path, sum, res_);
             }
         }
+        //回溯，当不取第i个时
         path.pop_back();
         sum -=i;
     }
