@@ -42,12 +42,13 @@ https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/
 //注意最后如果一直在递增时也有加上最后点抛出时的利润
 #include <vector>
 
-enum broke_status {unknown=-2, decreasing=-1, increasing};
+enum broke_status {begining=-2, decreasing=-1, increasing};
 
 int maxProfit(std::vector<int>& prices) {
     int buy_idx = 0, sold_idx = 0, i=1;
     int profit = 0;
-    broke_status status_ = broke_status::unknown ;
+    //一开始时的状态为begining
+    broke_status status_ = broke_status::begining ;
     while(i < prices.size())
     {   
         //等于0可以理解为状态保持不变，不需要记录
@@ -56,7 +57,7 @@ int maxProfit(std::vector<int>& prices) {
             if(status_ == broke_status::increasing)
             {
                 status_ = broke_status::increasing;
-            }else if(status_ == broke_status::unknown)
+            }else if(status_ == broke_status::begining)
             {
                 status_ = broke_status::increasing;
                 buy_idx = i-1;
@@ -69,10 +70,11 @@ int maxProfit(std::vector<int>& prices) {
         {
             if(status_ == broke_status::increasing)
             {
+                //i-1为波峰状态，开始售出，当前状态更新为decreasing
                 sold_idx = i-1;
                 profit += (prices[sold_idx] - prices[buy_idx]);
                 status_ = broke_status::decreasing;
-            }else if(status_ == broke_status::unknown)
+            }else if(status_ == broke_status::begining)
             {
                 status_ = decreasing;
             }else if(status_ == broke_status::decreasing)
@@ -82,6 +84,7 @@ int maxProfit(std::vector<int>& prices) {
         }
         i++;
     }
+    //最后的状态，如果时递增，则直接抛出算profit
     if(status_ == broke_status::increasing)
     {
         profit += (prices.back() - prices[buy_idx]);

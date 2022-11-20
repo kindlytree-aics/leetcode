@@ -69,6 +69,7 @@ int isOp(std::string s)
     }
 }
 
+//
 int parseInt(std::string s)
 {
     int factor = 1;
@@ -100,6 +101,7 @@ long evalRPN(std::vector<std::string>& tokens) {
         int is_op = isOp(s);
         if(is_op == -1){
             //int num = parseInt(s);
+            //stoi(string to integer);
             int num = stoi(s);
             cal_stack_.push(num); 
             continue;

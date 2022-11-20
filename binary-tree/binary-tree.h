@@ -81,7 +81,8 @@ TreeNode* buildBinaryTree(std::vector<int>& root)
     return root_node_;
 }
 
-//以先序遍历构建二叉树
+//以层级顺序构建一颗二叉树
+//如果为NULL其实为0，最好找出一个特殊的数字来表示空节点
 TreeNode* buildBinaryTreeByLevelOrder(std::vector<int>& root)
 {
     std::queue<TreeNode*>queue_;

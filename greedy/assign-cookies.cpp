@@ -34,20 +34,13 @@
 #include <iostream>
 #include <algorithm>
 
+//s和g数组都先进行升序排序
+//然后s和g分别进行匹配，如果当前匹配成功，说明可以进行匹配，将饼发给孩子
+//否则如果不能匹配，孩子的需求g比饼的量s要大，则当前的饼不能够给当前的孩子
+//这是个理想情况，不用考虑饼子进行划分组合等比较复杂的情形，直接用贪心算法求解即可。
 int findContentChildren(std::vector<int>& g, std::vector<int>& s) {
     std::sort(s.begin(), s.end());
     std::sort(g.begin(), g.end());
-    // 方法一
-    // int index = 0;
-    // for(int i = 0; i < s.size(); i++)
-    // {
-    //     if(index < g.size() && g[index] <= s[i])
-    //     {
-    //         index++;
-    //     }
-    // }
-    // return index;
-    //方法二
     int gsize = g.size(), ssize = s.size();
     int  g_idx = 0, s_idx= 0;
     int count = 0;

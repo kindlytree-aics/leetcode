@@ -33,13 +33,10 @@
 树中节点数目在范围 [0, 100] 内
 -100 <= Node.val <= 100
 */
-
 #include <vector>
 #include <iostream>
 #include "binary-tree.h"
 #include <stack>
-
-
 
 std::vector<int> preorderTraversal(TreeNode* root) {
     std::stack<TreeNode*> statck_;
