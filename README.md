@@ -4,6 +4,7 @@
 ### 开发环境准备：
 - IDE：https://code.visualstudio.com/
 - [配置方法参考](https://github.com/kindlytree-aics/c-basics)
+- [leetcode官方网站](https://leetcode.cn/)
 
 ### 主要内容
 - 数组相关算法题目，array子目录
