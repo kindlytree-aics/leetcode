@@ -15,6 +15,7 @@
 - 二叉树相关算法题目， binary-tree子目录
 - 回溯算法相关题目， backtracking子目录
 - 贪婪算法相关题目，greedy子目录
+- 动态规划相关题目，dp子目录
 - To be continued...
 
 ### 特殊数据结构的使用
