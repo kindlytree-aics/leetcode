@@ -40,7 +40,7 @@ https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/
 //其中dp[0]=prices[0],然后动态计算之后的就可以了。
 //dp[i]表示截止到i，价格的最低点是多少   dp[i]=min(dp[i-1],nums[i])
 /*
-    int max = 0;
-    dp[i] = (dp[i - 1] < prices[i]) ? dp[i - 1] : prices[i];
-    max = (prices[i] - dp[i]) > max ? prices[i] - dp[i] : max;
+int max = 0;
+dp[i] = (dp[i - 1] < prices[i]) ? dp[i - 1] : prices[i];
+max = (prices[i] - dp[i]) > max ? prices[i] - dp[i] : max;
 */
